@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Music Player</title>
+		<!-- <meta name="viewport" content="width=device-width,intial-scale=1.0"> -->
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="music">
+			<h2 class="title">Music Name</h2>
+			<div class="player">
+				<audio src=""></audio>
+			<div class="btns">
+				<span class="prev">
+				<ion-icon name="play-back-outline"></ion-icon>
+				</span>
+				<span class="playpause">
+					<ion-icon name="play-outline"></ion-icon>
+				</span>
+				<span class="next">
+				<ion-icon name="play-forward-outline"></ion-icon>
+				</span>
+			</div>
+			</div>
+		</div>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	
+	<script type="text/javascript">
+		const title = document.querySelector('.title');
+		const prev = document.querySelector('.prev');
+		const playpause = document.querySelector('.playpause');
+		const next = document.querySelector('.next');
+		const audio = document.querySelector('audio');
+
+		//first, we will create song list
+
+		const songList = [
+			{
+				path: "0.mp3",
+				songName: "Creative Minds"
+			},
+			{
+				path: "1.mp3",
+				songName: "Little Idea"
+			},
+			{
+				path: "2.mp3",
+				songName: "Jazzy Frenchy"
+			},
+			{
+				path: "3.mp3",
+				songName: "Hey!"
+			},
+		];
+
+		let song_playing = false;
+
+		//play song
+		function playSong(){
+			song_playing = true;
+			audio.play();
+			playpause.classList.add('active');
+			//change icon
+
+			playpause.innerHTML = "<ion-icon name='pause-outline'></ion-icon>";
+		}
+		//play song
+		function pauseSong(){
+			song_playing = false;
+			audio.pause();
+			playpause.classList.remove('active');
+			playpause.innerHTML = "<ion-icon name='play-outline'></ion-icon>";
+		}
+
+		//play or pause song on click
+		playpause.addEventListener("click", () => (song_playing ? pauseSong() : playSong()));
+
+		//load song 
+		function loadSong(songList){
+			title.textContent = songList.songName;
+			audio.src = songList.path;
+		}
+
+		//current song 
+		let i = 0;
+
+		//on load - select first song form song title 
+		loadSong(songList[i]);
+
+		//previous song
+		function prevSong(){
+			i--;
+			if (i < 0){
+				i = songList.length - 1;
+			}
+			loadSong(songList[i]);
+			playSong();
+		}
+		prev.addEventListener("click", prevSong);
+
+		//next song
+		function nextSong(){
+			i++;
+			if (i > songList.length - 1){
+				i = 0;
+			}
+			loadSong(songList[i]);
+			playSong();
+		}
+		next.addEventListener("click", nextSong);
+	</script>
+	</body>
+</html>
