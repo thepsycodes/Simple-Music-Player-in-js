@@ -1,2 +1,5 @@
 # Simple-Music-Player-in-js
-In the wake of exam days , today I tried to make simple music player ... this is not my originali idea I have taken refernce from youtube channel Online Tutorials.
+> You can use these music for free in your multimedia project (online videos (Youtube, Facebook,...), websites, animations, etc.) as long as you credit Bensound.com (in the description for a video).
+For example: Music: https://www.bensound.com
+
+> Designs: Online Tutorials yt
